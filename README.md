@@ -22,17 +22,15 @@ With Skills enabled, AI agents such as Copilot, Claude, and Cursor can explore y
 
 ## Get openapi-skills Pro
 
-**Purchase:** `STORE_URL_PLACEHOLDER`
+**Purchase:** [https://openapi-skills.lemonsqueezy.com](https://openapi-skills.lemonsqueezy.com)
 
-**Installer download:** `INSTALLER_DOWNLOAD_URL_PLACEHOLDER`
+**Installer download:** [https://app.lemonsqueezy.com/my-orders](https://app.lemonsqueezy.com/my-orders)
 
-Replace these placeholders with the active store and installer URLs before publishing this README. Checkout and installer distribution are not yet live.
+openapi-skills Pro is distributed as a self-contained installer. The installer attempts a system installation, and falls back to a per-user install if elevation is declined or unavailable. The installer prompts for your license key. The license file stays in your user profile.
 
-openapi-skills Pro is distributed as a self-contained installer; a separate .NET runtime is not required. The installer prompts for your license JTI, attempts a system installation, and falls back to a per-user install if elevation is declined or unavailable. The license file stays in your user profile.
+These platforms are supported: Windows x64, macOS x64, macOS arm64 and Linux x64. 
 
-Required installer targets are Windows x64, macOS x64, and Linux x64. macOS arm64 is an optional fourth target and should only be advertised once its installer and download support are available.
-
-> **Code-first bootstrap tip:** If your project is still code-first and has no OpenAPI schema yet, use the `openapi-skills-jsdoc` Skill to bootstrap the first document from route code, then use openapi-skills Pro with the generated schema.
+> **Code-first bootstrap tip:** If your project is still code‑first and doesn’t yet have an OpenAPI schema, you can use the openapi-skills-jsdoc Skill to generate an initial document from your route code. (Currently supported for Node.js users, with broader support coming soon.)
 
 
 ## Overview
@@ -65,7 +63,7 @@ Enable the optional Skill bundle, and AI agents (Copilot, Claude, Cursor, etc.) 
 - Work with multiple API schemas simultaneously (stored under: .openapi-skills/<apiName>/ directory)
 - Validate schemas and API responses  
 - Build multi-step scenarios  
-- Run a local mock server from generated artifacts and point requests at it  
+- Run a local mock server from generated artifacts; use it through the CLI or any HTTP client  
 - AI Skills bundle for agent-driven workflows (code, tests, clients, docs)
 
 ## Workflow
@@ -128,20 +126,19 @@ openapi-skills request addPet --api petstore --force --update-request '{"body.id
 openapi-skills mock-server --api petstore
 ```
 
-The mock server serves routes from generated artifacts for the selected API and persists the running URL in `.openapi-skills/config.json` as `apis.<apiName>.mockUrl`.
+The mock server serves routes from generated artifacts for the selected API and persists the running URL in `.openapi-skills/config.json` as `apis.<apiName>.mockUrl`. Once started, you can use it in either of two ways:
 
-You can point any HTTP client you use during development at the mock server, including `fetch`, `axios`, `curl`, Postman, Insomnia, or your own app code.
+1. **Use any HTTP client:** Send requests directly to the reported mock server URL as if it were your API's base URL. This works with `fetch`, Axios, curl, Postman, Insomnia, or your own app.
+2. **Use the CLI:** Add `--mock` to an `openapi-skills request` command to send that CLI request to the local mock server instead of the configured live `baseUrl`:
+
+```bash
+openapi-skills request addPet --api petstore --mock
+```
 
 The mock server also exposes a reserved `GET /mock-health` endpoint that returns a small JSON status payload:
 
 ```json
 { "ok": true, "apiName": "petstore", "status": "running" }
-```
-
-Use it with `request --mock` to send CLI requests to the local server instead of the configured live `baseUrl`:
-
-```bash
-openapi-skills request addPet --api petstore --mock
 ```
 
 If a saved `response.json` exists, the mock server replays it. If it is missing, the server generates a deterministic JSON fallback from the available schema artifacts.
@@ -292,7 +289,7 @@ openapi-skills generate https://petstore.swagger.io/v2/swagger.json --validate
 | “Create a Playwright API test for addPet.” | Agent generates Playwright test using endpoint + schema |
 | “Build a TypeScript API client for this API.” | Agent generates typed client functions + models |
 | “Create a 3-step scenario: add, fetch, delete pet.” | Multi-step workflow via `request` |
-| “Start a local mock server for petstore and point requests at it.” | `mock-server` plus `request --mock` |
+| “Start a local mock server for petstore and send requests to it.” | `mock-server`, then either use an HTTP client with the reported URL or use `request --mock` |
 
 Agents combine CLI output with code generation to produce:
 - typed API clients  
@@ -317,8 +314,8 @@ A short video clip demonstrating the CLI in action is available here:
 
 If you run into issues or have questions:
 
-- Report bugs or request features via GitHub Issues: [https://github.com/tzurp/openapi-skills-cli/issues](https://github.com/tzurp/openapi-skills-cli/issues)
-- General questions can be sent directly to: [tzur.paldi@outlook.com](mailto:tzur.paldi@outlook.com)
+- Report bugs or request features via GitHub Issues: [https://github.com/tzurp/openapi-skills-pro/issues](https://github.com/tzurp/openapi-skills-pro/issues)
+- General questions can be sent directly to: [bedekbyte@outlook.com](mailto:bedekbyte@outlook.com)
 - Check CLI help for up-to-date usage:
   ```bash
   openapi-skills --help
@@ -331,9 +328,6 @@ If you run into issues or have questions:
 
 ## Links
 
-- npm package: [https://www.npmjs.com/package/openapi-skills](https://www.npmjs.com/package/openapi-skills)
-- GitHub repository: [https://github.com/tzurp/openapi-skills-cli](https://github.com/tzurp/openapi-skills-cli)
+- GitHub repository: [https://github.com/tzurp/openapi-skills-pro](https://github.com/tzurp/openapi-skills-pro)
 ```
-
-
 
