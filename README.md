@@ -15,7 +15,7 @@ The core free CLI provides the foundational API exploration workflow. openapi-sk
 - Mock server: Spin up realistic mock APIs directly from your OpenAPI schema for rapid prototyping and testing.
 - HTML schema export: Generate a beautiful, interactive HTML documentation view of your API schema that you can share or host.
 - Schema version comparison: Compare two versions of the same API schema operation by operation, see exactly what changed, and detect breaking changes with precision.
-- Code-first OpenAPI bootstrap: Ship swagger-jsdoc annotations from route code faster, with a skill designed to turn code-first APIs into a usable OpenAPI starting point.
+- Code-first OpenAPI bootstrap: Create OpenAPI annotations from API handlers across languages and frameworks and generate a usable OpenAPI document directly with the CLI.
 - Performance and UX improvements: Faster commands, clearer errors, and smoother workflows across the CLI.
 
 With Skills enabled, AI agents such as Copilot, Claude, and Cursor can explore your API, prepare and execute live requests, validate schemas, and generate client code, tests, and workflows from natural-language instructions.
@@ -30,7 +30,7 @@ openapi-skills Pro is distributed as a self-contained installer. The installer a
 
 These platforms are supported: Windows x64, macOS x64, macOS arm64 and Linux x64. 
 
-> **Code-first bootstrap tip:** If your project is still code‑first and doesn’t yet have an OpenAPI schema, you can use the openapi-skills-jsdoc Skill to generate an initial document from your route code. (Currently supported for Node.js users, with broader support coming soon.)
+> **Code-first bootstrap tip:** If your project is still code-first and doesn’t yet have an OpenAPI schema, install the optional `openapi-skills-annotator` skill to annotate route code, then run `openapi-skills generate-openapi` to write the OpenAPI document. The current annotation workflow supports Node.js JavaScript and TypeScript projects.
 
 
 ## Overview
@@ -74,18 +74,32 @@ Enable the optional Skill bundle, and AI agents (Copilot, Claude, Cursor, etc.) 
 
 ### Install openapi-skills Pro
 
-Download the installer for your operating system from `INSTALLER_DOWNLOAD_URL_PLACEHOLDER`, run it, and enter your license JTI when prompted. The installer configures the `openapi-skills` command and PATH. Replace the placeholder with the active download page before publishing.
+Download the installer for your operating system from [https://app.lemonsqueezy.com/my-orders](https://app.lemonsqueezy.com/my-orders), run it, and enter your license key when prompted. The installer configures the `openapi-skills` command and PATH.
 
 ### Install the Skill
 
-If your project has no OpenAPI schema yet, install the openapi-skills-jsdoc skill first with `--skills-jsdoc`:
+If your project has no OpenAPI schema yet, install the optional annotator skill with `--skills-annotator`:
 
 ```bash
 openapi-skills install --skills
-openapi-skills install --skills-jsdoc
-openapi-skills install --skills --skills-jsdoc
+openapi-skills install --skills-annotator
+openapi-skills install --skills --skills-annotator
 ```
 Select your preferred path from  the menu and confirm
+
+### Generate OpenAPI from annotations
+
+```bash
+openapi-skills generate-openapi --apis "src/routes/**/*.ts" --apis "docs/api/annotations/**/*.js" --out docs/api/generated/openapi.json --openapi-version 3.1.0
+```
+
+`--apis` is repeatable and required. `--out` and `--openapi-version` are required. The output extension determines the format: use `.json` for JSON or `.yaml`/`.yml` for YAML. Relative source patterns and output paths resolve from the current working directory unless `--project-root` is provided. The title defaults to `OpenAPI`, and the API version defaults to `1.0.0` (`--api-version` overrides it). This command writes only the OpenAPI document; it does not create `.openapi-skills` artifacts.
+
+To generate YAML, change the output extension:
+
+```bash
+openapi-skills generate-openapi --apis "src/routes/**/*.ts" --out docs/api/generated/openapi.yaml --openapi-version 3.1.0
+```
 
 ### Generate artifacts from a schema
 
@@ -184,7 +198,7 @@ You can always ask the skill question to progress in your work. For example:
  - `/openapi-skills what can you do?`
  - `/openapi-skills how do I add an auth token to a live request?`
 
-#### Examples for the `openapi-skills-jsdoc` skill (`--skills-jsdoc`)
+#### Examples for the `openapi-skills-annotator` skill (`--skills-annotator`)
 
 Use this skill when route code is the source of truth and the project does not yet have a usable OpenAPI schema.
 
@@ -206,7 +220,7 @@ Use the platform installer from `INSTALLER_DOWNLOAD_URL_PLACEHOLDER`. The instal
 
 ### Install the Skill
 
-If your project has no OpenAPI schema yet, prefer the openapi-skills-jsdoc skill first with `--skills-jsdoc`:
+If your project has no OpenAPI schema yet, prefer the openapi-skills-annotator skill with `--skills-annotator`:
 
 ```bash
 # Local install (default)
@@ -217,9 +231,9 @@ openapi-skills install --skills
 openapi-skills install --skills --global
 ```
 ```bash
-# openapi-skills-jsdoc skill bundle
-openapi-skills install --skills-jsdoc
-openapi-skills install --skills-jsdoc --global
+# openapi-skills-annotator skill bundle
+openapi-skills install --skills-annotator
+openapi-skills install --skills-annotator --global
 ```
 
 During installation, the CLI shows a small menu where you choose the Skill’s location:
@@ -308,7 +322,7 @@ Additional compare examples:
 
 A short video clip demonstrating the CLI in action is available here:
 
-[https://github.com/tzurp/openapi-skills-cli/releases/tag/video](https://github.com/tzurp/openapi-skills-cli/releases/tag/video)
+[https://github.com/tzurp/openapi-skills-cli/releases#release-video](https://github.com/tzurp/openapi-skills-cli/releases#release-video)
 
 ## Support
 
@@ -330,4 +344,3 @@ If you run into issues or have questions:
 
 - GitHub repository: [https://github.com/tzurp/openapi-skills-pro](https://github.com/tzurp/openapi-skills-pro)
 ```
-
