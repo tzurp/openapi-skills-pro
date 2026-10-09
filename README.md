@@ -370,9 +370,7 @@ If you run into issues or have questions:
 
 ## Links
 
-- GitHub repository: [https://github.com/tzurp/openapi-skills-pro](https://github.com/tzurp/openapi-skills-pro)
-- Free OpenAPI and GraphQL CLI: [openapi-skills-cli](https://github.com/tzurp/openapi-skills-cli)
-- Code-first OpenAPI annotation skill: [openapi-skills-annotator](./skill-templates/openapi-skills-annotator/)
+- Free openapi-skills CLI: [openapi-skills-cli](https://github.com/tzurp/openapi-skills-cli)
 - Publisher website: [Bedekbyte](https://bedekbyte.com)
 
 ## Keywords
