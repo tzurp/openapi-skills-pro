@@ -1,11 +1,27 @@
 ﻿
 # openapi-skills Pro
-Command-line toolkit for OpenAPI and GraphQL workflows
+**OpenAPI & GraphQL CLI** — Explore APIs, generate artifacts, validate schemas, compare API versions, and enable AI agent workflows.
+
+openapi-skills-pro is a cross-platform CLI for OpenAPI and GraphQL workflows. It supports schema exploration, local mock servers, interactive HTML API documentation, schema comparison, code-first OpenAPI generation, validation, and AI agent automation.
+
+[![GitHub stars](https://img.shields.io/github/stars/tzurp/openapi-skills-pro?style=flat)](https://github.com/tzurp/openapi-skills-pro/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/tzurp/openapi-skills-pro?style=flat)](https://github.com/tzurp/openapi-skills-pro/issues)
+![Platforms: Windows, macOS, Linux](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue)
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/tzurp/images/refs/heads/main/openapi-skills-pro-stripe.jpg">
 </p>
 
 ### Work with OpenAPI and GraphQL from your terminal, or let AI agents use the built-in Skills bundle to explore APIs, prepare requests, validate schemas, and generate code and tests. openapi-skills Pro brings the v2 toolkit together in a commercial, self-contained CLI for Windows, macOS, and Linux.
+
+## Quick Links
+
+- [Install openapi-skills Pro](#install-openapi-skills-pro)
+- [Quick start](#quick-start)
+- [Run a local mock server](#run-a-local-mock-server)
+- [Compare API schemas](#5-compare-two-versions-of-the-same-api-schema)
+- [Generate HTML API docs](#generate-api-docs)
+- [AI agent integration](#ai-agent-integration)
 
 ## What openapi-skills Pro adds
 
@@ -30,11 +46,12 @@ openapi-skills Pro is distributed as a self-contained installer. The installer a
 
 These platforms are supported: Windows x64, macOS x64, macOS arm64 and Linux x64. 
 
-> **Code-first bootstrap tip:** If your project is still code-first and doesn’t yet have an OpenAPI schema, install the optional `openapi-skills-annotator` skill to annotate route code, then run `openapi-skills generate-openapi` to write the OpenAPI document. The current annotation workflow supports Node.js JavaScript and TypeScript projects.
+> **Code-first bootstrap tip:** If your project is still code-first and doesn’t yet have an OpenAPI schema, install the optional `openapi-skills-annotator` skill to annotate source code, then run `openapi-skills generate-openapi` to write the OpenAPI document.
 
 
-## Overview
+## Overview — OpenAPI & GraphQL CLI
 
+openapi-skills Pro is a command-line toolkit for exploring OpenAPI and GraphQL schemas, preparing and executing API requests, validating schemas and responses, generating API artifacts and documentation, and comparing API versions.
 
 ## Why openapi-skills Pro
 
@@ -51,6 +68,17 @@ Working with API schemas can be slow and error‑prone. `openapi-skills` provide
 openapi-skills Pro works as a traditional CLI. Explore endpoints, inspect schemas, prepare requests, and execute live API calls directly from the terminal.
 
 Enable the optional Skill bundle, and AI agents (Copilot, Claude, Cursor, etc.) can operate the CLI for you: exploring operations, preparing and executing requests, validating schemas, and even generating client code, tests, and multi-step workflows from natural language.
+
+## AI Agent Integration
+
+The built-in Skill bundle enables AI agents such as GitHub Copilot, Claude, and Cursor to use the openapi-skills CLI through natural-language instructions. Agents can:
+
+- Explore OpenAPI and GraphQL schemas and find operations
+- Prepare and execute live API requests
+- Validate schemas and API responses
+- Generate client code and tests
+- Build multi-step API workflows
+- Start a local mock server and send requests to it
 
 ## Features
 
@@ -216,7 +244,7 @@ Use this skill when route code is the source of truth and the project does not y
 
 ### 1. Install openapi-skills Pro
 
-Use the platform installer from `INSTALLER_DOWNLOAD_URL_PLACEHOLDER`. The installer requests elevation for a system-wide installation and continues with a per-user installation if elevation is declined. Enter your license JTI when prompted.
+Download the platform installer from [your orders](https://app.lemonsqueezy.com/my-orders). The installer requests elevation for a system-wide installation and continues with a per-user installation if elevation is declined. Enter your license key when prompted.
 
 ### Install the Skill
 
@@ -343,4 +371,11 @@ If you run into issues or have questions:
 ## Links
 
 - GitHub repository: [https://github.com/tzurp/openapi-skills-pro](https://github.com/tzurp/openapi-skills-pro)
+- Free OpenAPI and GraphQL CLI: [openapi-skills-cli](https://github.com/tzurp/openapi-skills-cli)
+- Code-first OpenAPI annotation skill: [openapi-skills-annotator](./skill-templates/openapi-skills-annotator/)
+- Publisher website: [Bedekbyte](https://bedekbyte.com)
+
+## Keywords
+
+OpenAPI CLI, GraphQL CLI, API explorer, schema validation, schema diff, API version comparison, mock server, HTML API documentation, code-first OpenAPI, API testing, AI agent skills
 ```
