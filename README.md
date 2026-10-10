@@ -1,10 +1,11 @@
 ﻿
 # openapi-skills Pro
-**OpenAPI & GraphQL CLI** — Explore APIs, generate artifacts, validate schemas, compare API versions, and enable AI agent workflows.
+**OpenAPI & GraphQL CLI** - powered by [Bedekbyte](https://www.bedekbyte.com).  
+ Explore APIs, generate artifacts, validate schemas, compare API versions, and enable AI agent workflows.
 
 openapi-skills-pro is a cross-platform CLI for OpenAPI and GraphQL workflows. It supports schema exploration, local mock servers, interactive HTML API documentation, schema comparison, code-first OpenAPI generation, validation, and AI agent automation.
 
-[![GitHub stars](https://img.shields.io/github/stars/tzurp/openapi-skills-pro?style=flat)](https://github.com/tzurp/openapi-skills-pro/stargazers)
+<!-- [![GitHub stars](https://img.shields.io/github/stars/tzurp/openapi-skills-pro?style=flat)](https://github.com/tzurp/openapi-skills-pro/stargazers) -->
 [![GitHub issues](https://img.shields.io/github/issues/tzurp/openapi-skills-pro?style=flat)](https://github.com/tzurp/openapi-skills-pro/issues)
 ![Platforms: Windows, macOS, Linux](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue)
 
@@ -46,7 +47,7 @@ openapi-skills Pro is distributed as a self-contained installer. The installer a
 
 These platforms are supported: Windows x64, macOS x64, macOS arm64 and Linux x64. 
 
-> **Code-first bootstrap tip:** If your project is still code-first and doesn’t yet have an OpenAPI schema, install the optional `openapi-skills-annotator` skill to annotate source code, then run `openapi-skills generate-openapi` to write the OpenAPI document.
+>💡 **Code-first bootstrap tip:** If your project is still code-first and doesn’t yet have an OpenAPI schema, install the optional `openapi-skills-annotator` skill to annotate source code, then run `openapi-skills generate-openapi` to write the OpenAPI document.
 
 
 ## Overview — OpenAPI & GraphQL CLI
@@ -228,15 +229,15 @@ You can always ask the skill question to progress in your work. For example:
 
 #### Examples for the `openapi-skills-annotator` skill (`--skills-annotator`)
 
-Use this skill when route code is the source of truth and the project does not yet have a usable OpenAPI schema.
+The annotator can add OpenAPI annotations using the target language's comment syntax. Pass the annotated source files to `generate-openapi` with `--apis`.
 
 | Natural language request | What the skill does |
 |--------------------------|---------------------|
-| “My API is defined in route code, but I don't have an OpenAPI file. Document the routes using OpenAPI 3.1.” | Creates API documentation from the routes and asks about details it cannot determine. |
-| “I changed my routes. Update the OpenAPI file and check that it's valid.” | Updates the route annotations, generates the schema, and validates it. |
-| “Update the API docs to match the latest routes, and summarize what changed.” | Refreshes the generated API reference files and reports route changes. |
-| “Look for request or response formats that repeat. Share them where it makes the schema clearer.” | Reuses common formats when the code clearly supports it, without changing the API behavior. |
-| “Create a browsable HTML reference from my finished OpenAPI file.” | Passes the completed schema to `openapi-skills` to generate API documentation. |
+| "/openapi-skills-annotator My API is defined in source code, but I don't have an OpenAPI file. Document its handlers using OpenAPI 3.1.” | Creates API documentation from the API handlers and asks about details it cannot determine. |
+| "/openapi-skills-annotator I changed my API handlers. Update the OpenAPI file and check that it's valid.” | Updates the source annotations, generates the schema, and validates it. |
+| "/openapi-skills-annotator Update the API docs to match the latest API handlers, and summarize what changed.” | Refreshes the generated API reference files and reports API changes. |
+| "/openapi-skills-annotator Look for request or response formats that repeat. Share them where it makes the schema clearer.” | Reuses common formats when the code clearly supports it, without changing the API behavior. |
+| "/openapi-skills-annotator Create a browsable HTML reference from my finished OpenAPI file.” | Passes the completed schema to `openapi-skills` to generate API documentation. |
 
 ---
 
@@ -321,17 +322,19 @@ openapi-skills generate https://petstore.swagger.io/v2/swagger.json --validate
 
 ## Examples of what AI agents can do when the Skill is enabled
 
+Optionally, in Agent mode, invoke the Skill with `/openapi-skill`, then describe what you want in natural language:
+
 | Natural language request | CLI/Skill executed |
 |--------------------------|--------------------|
-| “Make a live request to addPet with name Fluffy.” | Postman‑like API call via `request --update-request` |
-| “Show me the first POST operation.” | Explore endpoints via `list` |
-| “Describe the addPet operation.” | Operation breakdown via `describe` |
-| “Validate this API schema.” | Schema validation via `generate --validate` |
-| “Generate a Jest test for addPet.” | Agent writes full Jest test using CLI metadata |
-| “Create a Playwright API test for addPet.” | Agent generates Playwright test using endpoint + schema |
-| “Build a TypeScript API client for this API.” | Agent generates typed client functions + models |
-| “Create a 3-step scenario: add, fetch, delete pet.” | Multi-step workflow via `request` |
-| “Start a local mock server for petstore and send requests to it.” | `mock-server`, then either use an HTTP client with the reported URL or use `request --mock` |
+| "Make a live request to addPet with name Fluffy.” | Postman‑like API call via `request --update-request` |
+| "Show me the first POST operation.” | Explore endpoints via `list` |
+| "Describe the addPet operation.” | Operation breakdown via `describe` |
+| "Validate this API schema.” | Schema validation via `generate --validate` |
+| "Generate a Jest test for addPet.” | Agent writes full Jest test using CLI metadata |
+| "Create a Playwright API test for addPet.” | Agent generates Playwright test using endpoint + schema |
+| "Build a TypeScript API client for this API.” | Agent generates typed client functions + models |
+| "Create a 3-step scenario: add, fetch, delete pet.” | Multi-step workflow via `request` |
+| "Start a local mock server for petstore and send requests to it.” | `mock-server`, then either use an HTTP client with the reported URL or use `request --mock` |
 
 Agents combine CLI output with code generation to produce:
 - typed API clients  
@@ -343,8 +346,8 @@ Agents combine CLI output with code generation to produce:
 
 Additional compare examples:
 
-- “Compare addPet between v1 and v2.” -> `compare --api ... --api ... --op addPet`
-- “Show API surface changes between two specs.” -> `compare --surface`
+- "Compare addPet between v1 and v2.” -> `compare --api ... --api ... --op addPet`
+- "Show API surface changes between two specs.” -> `compare --surface`
 
 ## 🎥 Video demo
 
