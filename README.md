@@ -195,7 +195,7 @@ openapi-skills docs main-schema/openapi.json --rename petstore --dark --open
 openapi-skills docs https://example.com/openapi.json --out docs/
 ```
 
-The `docs` command accepts an absolute path, a path relative to the project root, or an HTTP(S) URL to an OpenAPI 2/3 schema. It copies or downloads the schema into the output directory, generates an `index.html`, and starts a local HTTP server by default so Redoc can render reliably. The default output directory is `.openapi-skills/<schemaName>/out`, and `--rename` changes the schema name used in that default path.
+The `docs` command accepts an absolute path, a path relative to the project root, or an HTTP(S) URL to an OpenAPI 2/3 schema. It copies or downloads the schema into the output directory, generates an `index.html`, and starts a local HTTP server by default so the HTML Viewer can render reliably. The default output directory is `.openapi-skills/<schemaName>/out`, and `--rename` changes the schema name used in that default path.
 
 Use `--dark` for the dark theme, `--open` to launch the browser, and `--no-serve` if you only want the generated files.
 
@@ -230,13 +230,14 @@ You can always ask the skill question to progress in your work. For example:
 #### Examples for the `openapi-skills-annotator` skill (`--skills-annotator`)
 
 The annotator can add OpenAPI annotations using the target language's comment syntax. Pass the annotated source files to `generate-openapi` with `--apis`.
+After generating and validating the baseline schema, you can also ask the skill to review it for strong, evidence-backed candidates for reusable components. This helps surface worthwhile reuse without forcing one-off schemas into components.
 
 | Natural language request | What the skill does |
 |--------------------------|---------------------|
 | "/openapi-skills-annotator My API is defined in source code, but I don't have an OpenAPI file. Document its handlers using OpenAPI 3.1.” | Creates API documentation from the API handlers and asks about details it cannot determine. |
 | "/openapi-skills-annotator I changed my API handlers. Update the OpenAPI file and check that it's valid.” | Updates the source annotations, generates the schema, and validates it. |
 | "/openapi-skills-annotator Update the API docs to match the latest API handlers, and summarize what changed.” | Refreshes the generated API reference files and reports API changes. |
-| "/openapi-skills-annotator Look for request or response formats that repeat. Share them where it makes the schema clearer.” | Reuses common formats when the code clearly supports it, without changing the API behavior. |
+| "/openapi-skills-annotator Review the generated OpenAPI schema for strong, evidence-backed candidates for reusable components.” | Identifies repeated or clearly named structures worth sharing, while keeping one-off schemas inline and preserving the contract. |
 | "/openapi-skills-annotator Create a browsable HTML reference from my finished OpenAPI file.” | Passes the completed schema to `openapi-skills` to generate API documentation. |
 
 ---
