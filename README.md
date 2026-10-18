@@ -163,6 +163,17 @@ openapi-skills compare --api petstore --api petstore-v2 --op addPet
 openapi-skills request addPet --api petstore --force --update-request '{"body.id":1,"body.name":"Fluffy"}'
 ```
 
+You can also edit the request artifact directly for an operation, then run `openapi-skills request` again without `--force`. The response is saved in the same folder as the request:
+
+```text
+.openapi-skills/
+└── petstore/
+    └── schemas/
+        └── getPetById/
+            ├── request.json   ⟵ Edit this request
+            └── response.json  ⟵ Response is saved here
+```
+
 ### Run a local mock server
 
 ```bash
@@ -234,11 +245,11 @@ After generating and validating the baseline schema, you can also ask the skill 
 
 | Natural language request | What the skill does |
 |--------------------------|---------------------|
-| "/openapi-skills-annotator My API is defined in source code, but I don't have an OpenAPI file. Document its handlers using OpenAPI 3.1.” | Creates API documentation from the API handlers and asks about details it cannot determine. |
-| "/openapi-skills-annotator I changed my API handlers. Update the OpenAPI file and check that it's valid.” | Updates the source annotations, generates the schema, and validates it. |
-| "/openapi-skills-annotator Update the API docs to match the latest API handlers, and summarize what changed.” | Refreshes the generated API reference files and reports API changes. |
-| "/openapi-skills-annotator Review the generated OpenAPI schema for strong, evidence-backed candidates for reusable components.” | Identifies repeated or clearly named structures worth sharing, while keeping one-off schemas inline and preserving the contract. |
-| "/openapi-skills-annotator Create a browsable HTML reference from my finished OpenAPI file.” | Passes the completed schema to `openapi-skills` to generate API documentation. |
+| "/openapi-skills-annotator My API is defined in source code, but I don't have an OpenAPI file. Document its handlers using OpenAPI 3.1." | Creates API documentation from the API handlers and asks about details it cannot determine. |
+| "/openapi-skills-annotator I changed my API handlers. Update the OpenAPI file and check that it's valid." | Updates the source annotations, generates the schema, and validates it. |
+| "/openapi-skills-annotator Update the API docs to match the latest API handlers, and summarize what changed." | Refreshes the generated API reference files and reports API changes. |
+| "/openapi-skills-annotator Review the generated OpenAPI schema for strong, evidence-backed candidates for reusable components." | Identifies repeated or clearly named structures worth sharing, while keeping one-off schemas inline and preserving the contract. |
+| "/openapi-skills-annotator Create a browsable HTML reference from my finished OpenAPI file." | Passes the completed schema to `openapi-skills` to generate API documentation. |
 
 ---
 
@@ -327,15 +338,15 @@ Optionally, in Agent mode, invoke the Skill with `/openapi-skill`, then describe
 
 | Natural language request | CLI/Skill executed |
 |--------------------------|--------------------|
-| "Make a live request to addPet with name Fluffy.” | Postman‑like API call via `request --update-request` |
-| "Show me the first POST operation.” | Explore endpoints via `list` |
-| "Describe the addPet operation.” | Operation breakdown via `describe` |
-| "Validate this API schema.” | Schema validation via `generate --validate` |
-| "Generate a Jest test for addPet.” | Agent writes full Jest test using CLI metadata |
-| "Create a Playwright API test for addPet.” | Agent generates Playwright test using endpoint + schema |
-| "Build a TypeScript API client for this API.” | Agent generates typed client functions + models |
-| "Create a 3-step scenario: add, fetch, delete pet.” | Multi-step workflow via `request` |
-| "Start a local mock server for petstore and send requests to it.” | `mock-server`, then either use an HTTP client with the reported URL or use `request --mock` |
+| "Make a live request to addPet with name Fluffy." | Postman‑like API call via `request --update-request` |
+| "Show me the first POST operation." | Explore endpoints via `list` |
+| "Describe the addPet operation." | Operation breakdown via `describe` |
+| "Validate this API schema." | Schema validation via `generate --validate` |
+| "Generate a Jest test for addPet." | Agent writes full Jest test using CLI metadata |
+| "Create a Playwright API test for addPet." | Agent generates Playwright test using endpoint + schema |
+| "Build a TypeScript API client for this API." | Agent generates typed client functions + models |
+| "Create a 3-step scenario: add, fetch, delete pet." | Multi-step workflow via `request` |
+| "Start a local mock server for petstore and send requests to it." | `mock-server`, then either use an HTTP client with the reported URL or use `request --mock` |
 
 Agents combine CLI output with code generation to produce:
 - typed API clients  
@@ -347,8 +358,8 @@ Agents combine CLI output with code generation to produce:
 
 Additional compare examples:
 
-- "Compare addPet between v1 and v2.” -> `compare --api ... --api ... --op addPet`
-- "Show API surface changes between two specs.” -> `compare --surface`
+- "Compare addPet between v1 and v2." -> `compare --api ... --api ... --op addPet`
+- "Show API surface changes between two specs." -> `compare --surface`
 
 ## 🎥 Video demo
 
